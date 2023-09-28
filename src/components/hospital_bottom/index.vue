@@ -16,7 +16,6 @@
 
 <style scoped lang="scss">
 .bottom {
-  width: 100%;
   height: 50px;
   background: #f0f2f5;
   display: flex;
