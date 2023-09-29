@@ -1,7 +1,7 @@
 <template>
   <div class="bottom">
     <div class="content">
-      <div class="left">Copyright © 2023 Jerry All Rights Reservea  ICP备案号 粤ICP备2023030454号</div>
+      <div class="left">Copyright © 2023 Jerry All Rights Reserved  ICP备案号 粤ICP备2023030454号</div>
       <div class="right">
          <span>联系我们</span>
          <span>合作伙伴</span>
@@ -16,9 +16,12 @@
 
 <style scoped lang="scss">
 .bottom {
+  margin-top: 50px;
   height: 50px;
-  background: #f0f2f5;
+  background: #fafafa;
   display: flex;
+  font-size: 12px;
+  color: #666666;
   justify-content: center;
   .content {
     width: 1200px;
@@ -26,7 +29,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
     .right{
         span{
             margin: 0px 5px;

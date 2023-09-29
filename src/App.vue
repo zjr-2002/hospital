@@ -7,8 +7,8 @@
       <!-- 展示路由组件的区域 -->
       <router-view></router-view>
     </div>
-    <HospitalBottom />
   </div>
+  <HospitalBottom class="Bottom"/>
 </template>
 
 <script setup lang="ts">
@@ -19,10 +19,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 55px;
   .content {
     margin-top: 70px;
     width: 1200px;
     min-height: 700px;
   }
+}
+.Bottom{
+  position: fixed;
+  bottom:0;
+  width: 100%;
 }
 </style>

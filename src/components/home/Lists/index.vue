@@ -10,12 +10,17 @@
           <Call 
             class="call"
             v-for="item in 10"
-            shadow="hover"
             />
         </div>
+        <!-- 分页 -->
+        <el-pagination
+          layout="prev, pager, next"
+          :total="50"
+          class="mt-4"
+        />
       </el-col>
       <!-- 右侧 -->
-      <el-col :span="5"> 公告 </el-col>
+      <el-col :span="5"> </el-col>
     </el-row>
   </div>
 </template>

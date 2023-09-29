@@ -1,13 +1,12 @@
 <template>
   <div class="top">
     <div class="content">
-      <!-- <router-link :to="home"> -->
       <div class="left">
         <img src="../../assets/images/logo.png" />
         <span>医疗通 预约挂号统一平台</span>
       </div>
-      <!-- </router-link> -->
       <div class="right">
+        <Dark />
         <span class="help">帮助中心</span>
         <span class="login">登陆/注册</span>
       </div>
@@ -15,7 +14,10 @@
   </div>
 </template>
 
-<script setup lang='ts'>
+<script setup lang="ts">
+import {computed} from 'vue'
+import Dark from "@/components/dark/index.vue"
+components:{Dark}
 </script>
 
 <style lang="scss">
@@ -29,7 +31,6 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); // 应用底部阴影效果
   width: 100%;
   height: 70px;
-  background: #ffffff; // 背景颜色为白色
   display: flex;
   justify-content: center;
 

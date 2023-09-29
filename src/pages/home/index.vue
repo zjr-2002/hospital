@@ -11,11 +11,12 @@
 </template>
 
 <script>
+
 import CarouselImg from "@/components/home/carouselImg/index.vue";
 import Search from "@/components/home/search/index.vue";
 import Lists from "@/components/home/Lists/index.vue";
 export default {
-  components: { CarouselImg, Search,Lists },
+  components: { CarouselImg, Search, Lists,},
 };
 </script>
 
