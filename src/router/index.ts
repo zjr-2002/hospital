@@ -16,6 +16,5 @@ export default createRouter({
   history:createWebHistory(),
   routes,
   //滚动行为
-  scrollBehavior(){return{left:0,top:0}
-  }
+  scrollBehavior(){return{left:0,top:0}}
 })

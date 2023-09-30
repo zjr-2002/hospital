@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import request from '@/utils/request'
 </script>
 
 <style scoped lang="scss">
@@ -21,8 +22,8 @@
   align-items: center;
   margin-bottom: 55px;
   .content {
-    margin-top: 70px;
     width: 1200px;
+    margin-top: 70px;
     min-height: 700px;
   }
 }

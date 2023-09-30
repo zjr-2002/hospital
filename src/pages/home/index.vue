@@ -1,13 +1,10 @@
 <template>
-  <div>
     <!-- 图片轮播 -->
     <CarouselImg />
     <!-- 搜索 -->
     <Search />
-
     <!-- 医院list -->
     <Lists />
-  </div>
 </template>
 
 <script>
