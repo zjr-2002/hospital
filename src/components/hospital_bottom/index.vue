@@ -2,7 +2,7 @@
   <div class="bottom">
     <div class="content">
       <div class="left">Copyright © 2023 Jerry All Rights Reserved  ICP备案号 粤ICP备2023030454号</div>
-      <div class="right">
+      <div class="right NotSelect">
          <span>联系我们</span>
          <span>合作伙伴</span>
          <span>用户协议</span>

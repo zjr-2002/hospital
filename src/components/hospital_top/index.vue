@@ -1,5 +1,5 @@
 <template>
-  <div class="top">
+  <div class="top NotSelect">
     <div class="content">
       <div class="left">
         <img src="../../assets/images/logo.png" />

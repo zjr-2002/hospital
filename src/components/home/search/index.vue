@@ -6,7 +6,7 @@
       class="inline-input w-50"
       placeholder="点击输入医院名称"
       >
-      <template #suffix><span class="searchBtn">搜索</span></template>
+      <template #suffix><span class="searchBtn NotSelect">搜索</span></template>
     </el-autocomplete>
         
   </div>

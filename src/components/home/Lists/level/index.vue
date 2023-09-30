@@ -1,33 +1,72 @@
 <template>
   <div class="level">
     <h1>医院</h1>
-    <div class="content">
+    <div class="content1">
       <div class="left">等级:</div>
-      <ul>
-        <li class="active">全部</li>
-        <li>1部</li>
-        <li>2部</li>
-        <li>2部</li>
-        <li>2部</li>
-        <li>3部</li>
+      <ul class="NotSelect">
+        <li :class="{active:SelectIndex==''}" @click="select('')">全部</li>
+        <li 
+          v-for="level in levelArr"
+          @click="select(level.value)"
+          :class="{active:SelectIndex==level.value}"
+        >{{level.name}}</li>
       </ul>
     </div>
-    <div class="content">
+    <div class="content2">
       <div class="left">地区:</div>
-      <ul>
-        <li class="active">全部</li>
-        <li>1地</li>
-        <li>2地</li>
-        <li>2地</li>
-        <li>2地</li>
-        <li>3地</li>
+      <ul class="NotSelect">
+        <li :class="{active:SelectIndexLocal==''}" @click="selectLocal('')">全部</li>
+        <li 
+          v-for="local in localArr"
+          @click="selectLocal(local.value)"
+          :class="{active:SelectIndexLocal==local.value}"
+        >{{local.name}}</li>
       </ul>
     </div>
   </div>
 </template>
 
-<script>
-export default {};
+<script setup lang="ts">
+import { onMounted, ref } from 'vue'
+import {reqHospitalLevel} from '@/api/home/index'
+//储存级别
+let levelArr = ref([])
+//储存地址
+let localArr = ref([])
+
+onMounted(()=>{
+  GetLevel()
+  GetLocal()
+})
+//获取级别
+const GetLevel = async()=>{
+  let result = await reqHospitalLevel('HosType');
+  levelArr.value = result.data.data
+  if(result.data.code == 200){
+    console.log('级别',levelArr.value);
+  }
+}
+//获取地址
+const GetLocal = async()=>{
+  let result = await reqHospitalLevel('beijin');
+  localArr.value = result.data.data
+  if(result.data.code == 200){
+    console.log('地址',localArr.value);
+  }
+}
+
+
+//级别高亮
+let SelectIndex = ref(0)
+const select = (i)=>{
+  SelectIndex.value = i
+}
+//地址高亮
+let SelectIndexLocal = ref(0)
+const selectLocal = (i)=>{
+  SelectIndexLocal.value = i
+}
+
 </script>
 
 <style scoped lang="scss">
@@ -39,12 +78,23 @@ export default {};
     font-size: 20px;
     margin: 15px 0px;
   }
-  .content {
+  .content1 {
     display: flex;
     margin-bottom: 15px;
+    .left {
+      margin-right: 20px;
+    }
+  }
+  .content2 {
+    display: flex;
+    margin-bottom: 15px;
+    .left {
+      width: 82px;
+    }
   }
   ul {
     li {
+      height: 30px;
       float: left;
       margin-right: 30px;
       &.active {
@@ -57,8 +107,6 @@ export default {};
       cursor: pointer;
     }
   }
-  .left {
-    margin-right: 20px;
-  }
+
 }
 </style>

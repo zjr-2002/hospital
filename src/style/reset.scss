@@ -4,6 +4,20 @@
  * License: none (public domain)
  */
 
+//设置不可选择
+.NotSelect {
+    user-select: none; /* 禁止选中文本 */
+    -webkit-user-select: none; /* Safari/Chrome 浏览器兼容 */
+    -moz-user-select: none; /* Firefox 浏览器兼容 */
+    -ms-user-select: none; /* IE/Edge 浏览器兼容 */
+    -webkit-touch-callout: none; /* 禁止长按链接弹出菜单 */
+    -khtml-user-select: none; /* Konqueror 浏览器兼容 */
+    -webkit-tap-highlight-color: transparent; /* 触摸点击时禁用闪烁高亮效果 */
+    cursor: default; /* 默认鼠标指针样式 */
+  }
+  
+
+
 *,
 *:after,
 *:before {
