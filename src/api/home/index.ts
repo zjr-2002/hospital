@@ -8,11 +8,12 @@ enum API {
     HOSPITAL_URL = '/hosp/hospital/',
     //获取等级地区
     HOSPITALLEVENDRGION_URL = '/cmn/dict/findByDictCode/',
-
-
+    //搜索医院
+    HOSPITALSEARCH_URL = '/hosp/hospital/findByHosname/'
 }
 //获取医院的数据
 export const reqHospital = (page: number, limit: number, hostype = '', districtCode = '') =>request.get<any, HospitalResponseData>(API.HOSPITAL_URL + `${page}/${limit}?hostype=${hostype}&districtCode=${districtCode}`)
-
 //获取等级地区的数据
 export const reqHospitalLevel =(dictCode:string)=>request.get(API.HOSPITALLEVENDRGION_URL+dictCode)
+//获取搜索医院的数据
+export const reqHosSearch = (hosname:string)=>request.get(API.HOSPITALSEARCH_URL+hosname)

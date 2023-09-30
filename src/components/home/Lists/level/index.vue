@@ -18,7 +18,7 @@
         <li :class="{active:SelectIndexLocal==''}" @click="selectLocal('')">全部</li>
         <li 
           v-for="local in localArr"
-          @click="selectLocal(local.value)"
+          @click="selectLocal(local.value,local.id)"
           :class="{active:SelectIndexLocal==local.value}"
         >{{local.name}}</li>
       </ul>
@@ -29,9 +29,9 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import {reqHospitalLevel} from '@/api/home/index'
-//储存级别
+//储存所有级别
 let levelArr = ref([])
-//储存地址
+//储存所有地址
 let localArr = ref([])
 
 onMounted(()=>{
@@ -43,7 +43,7 @@ const GetLevel = async()=>{
   let result = await reqHospitalLevel('HosType');
   levelArr.value = result.data.data
   if(result.data.code == 200){
-    console.log('级别',levelArr.value);
+    // console.log('级别',levelArr.value);
   }
 }
 //获取地址
@@ -51,20 +51,25 @@ const GetLocal = async()=>{
   let result = await reqHospitalLevel('beijin');
   localArr.value = result.data.data
   if(result.data.code == 200){
-    console.log('地址',localArr.value);
+    // console.log('地址',localArr.value);
   }
 }
 
 
-//级别高亮
 let SelectIndex = ref(0)
-const select = (i)=>{
-  SelectIndex.value = i
+let $emit = defineEmits(['getlevel','getlocal'])
+const select = (level)=>{
+  //级别高亮
+  SelectIndex.value = level
+  //给父组当前级别
+  $emit('getlevel', level)
 }
+
 //地址高亮
 let SelectIndexLocal = ref(0)
-const selectLocal = (i)=>{
+const selectLocal = (i,id)=>{
   SelectIndexLocal.value = i
+  $emit('getlocal',id)
 }
 
 </script>
