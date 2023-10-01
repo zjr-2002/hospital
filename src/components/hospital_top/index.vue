@@ -1,7 +1,7 @@
 <template>
   <div class="top NotSelect">
     <div class="content">
-      <div class="left">
+      <div class="left" @click="getHome">
         <img src="../../assets/images/logo.png" />
         <span>医疗通 预约挂号统一平台</span>
       </div>
@@ -15,8 +15,14 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from 'vue'
+import {computed } from 'vue'
 import Dark from "@/components/dark/index.vue"
+import {useRouter} from 'vue-router'
+let $router = useRouter()
+const getHome = ()=>{ 
+  $router.push({path: '/home'})
+}
+
 components:{Dark}
 </script>
 

@@ -8,7 +8,7 @@
           @getlevel='getlevel'
           @getlocal='getlocal'
         />
-        <!-- 医院lists -->
+        <!-- 医院卡片堆 -->
         <div class="hospital">
           <Call
             class="call"
@@ -16,14 +16,14 @@
             :key="index"
             :hospital="item"
           />
-          <div class="bigText" v-if="loading==''">加载中...</div>
-          <div class="bigText" v-else-if="total==0">暂无数据</div>
+          <div class="bigText NotSelect" v-if="loading==''">加载中...</div>
+          <div class="bigText NotSelect" v-else-if="total==0">暂无数据</div>
         </div>
-        <!-- 分页 -->
+        <!-- 医院分页 -->
         <el-pagination
           v-model:current-page="pageNo"
           v-model:page-size="pageSize"
-          :page-sizes="[8, 10, 20, 30, 40]"
+          :page-sizes="[6, 10, 20, 30, 40]"
           :background="true"
           layout=" prev, pager, next, jumper,->,sizes,total"
           :total="total"

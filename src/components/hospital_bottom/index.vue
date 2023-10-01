@@ -1,5 +1,5 @@
 <template>
-  <div class="bottom">
+  <div :class="class1()">
     <div class="content">
       <div class="left">Copyright © 2023 Jerry All Rights Reserved  ICP备案号 粤ICP备2023030454号</div>
       <div class="right NotSelect">
@@ -12,13 +12,23 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useDark } from '@vueuse/core'
+const isDark = useDark()
+// 底部暗色切换
+const class1 = ()=>{if (isDark.value) {return 'bottom night'}else{return 'bottom white'}}
+
+</script>
 
 <style scoped lang="scss">
+  
+//默认颜色
+.white{
+  background: #fafafa;
+}
 .bottom {
   margin-top: 50px;
   height: 50px;
-  background: #fafafa;
   display: flex;
   font-size: 12px;
   color: #666666;
