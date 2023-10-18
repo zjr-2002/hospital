@@ -10,10 +10,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, 'src')
     }
   },
-
   //配置代理跨域
   server: {
-    proxy:{
+    proxy: {
       '/api': {
         target: 'http://syt.atguigu.cn',
         changeOrigin: true,

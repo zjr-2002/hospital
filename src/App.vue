@@ -5,29 +5,29 @@
     <!-- 展示路由组件的区域 -->
     <div class="content">
       <!-- 展示路由组件的区域 -->
-      <router-view></router-view>
+        <router-view></router-view>
     </div>
+    <HosiptalBottom />
+    <!-- 登录组件 -->
+    <Login v-if="userStore.visiable" />
   </div>
-  <HospitalBottom class="Bottom"/>
 </template>
 
 <script setup lang="ts">
-import request from '@/utils/request'
+//引入用户仓库
+import useUserStore from "@/store/modules/user";
+let userStore = useUserStore();
 </script>
 
 <style scoped lang="scss">
 .container {
-  margin-bottom: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .content {
-    margin: 0 auto;
-    width: 1200px;
     margin-top: 70px;
+    width: 1200px;
     min-height: 700px;
   }
-}
-.Bottom{
-  position: fixed;
-  bottom:0;
-  width: 100%;
 }
 </style>

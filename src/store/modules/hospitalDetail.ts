@@ -4,7 +4,7 @@ import { reqHospitalDetail, reqHospitalDeparment } from '@/api/hospital';
 //引入详情数据的ts类型
 import type { HospitalDetail } from '@/api/hospital/type'
 import type { DetailState } from './interface'
-import type { HosPitalDetail, DeparmentResponseData, DeparmentArr } from '@/api/hospital/type';
+import type { HosPitalDetail, DeparmentResponseData } from '@/api/hospital/type';
 const useDetailStore = defineStore('Detail', {
     state: (): DetailState => {
         return {

@@ -1,86 +1,110 @@
 <template>
   <div class="top NotSelect">
     <div class="content">
-      <div class="left" @click="getHome">
-        <img src="../../assets/images/logo.png" />
-        <span>医疗通 预约挂号统一平台</span>
+      <!-- 左侧 -->
+      <div class="left" @click="goHome">
+        <img src="../../assets/images/logo.png" alt="" />
+        <p>医疗通 预约挂号统一平台</p>
       </div>
       <div class="right">
-        <Dark />
-        <span class="help">帮助中心</span>
-        <span class="login">登陆/注册</span>
+        <p class="help">帮助中心</p>
+        <!-- 如果没有用户名字:显示登录注册 -->
+        <p class="login" @click="login" v-if="!userStore.userInfo.name">登录/注册</p>
+        <!-- 如果有用户信息展示用户信息 -->
+        <el-dropdown v-else>
+          <span class="el-dropdown-link">
+            {{ userStore.userInfo.name }}
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="goUser('/user/certification')"
+                >实名认证</el-dropdown-item
+              >
+              <el-dropdown-item @click="goUser('/user/order')">挂号订单</el-dropdown-item>
+              <el-dropdown-item @click="goUser('/user/patient')"
+                >就诊人管理</el-dropdown-item
+              >
+              <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed } from 'vue'
-import Dark from "@/components/dark/index.vue"
-import {useRouter} from 'vue-router'
-let $router = useRouter()
-const getHome = ()=>{ 
-  $router.push({path: '/home'})
-}
+import { ArrowDown } from "@element-plus/icons-vue";
+//引入路由器
+import { useRouter } from "vue-router";
+//获取user仓库的数据( visiable)可以控制login组件的对话框显示与隐藏
+import useUserStore from "@/store/modules/user";
+let userStore = useUserStore();
 
-components:{Dark}
+let $router = useRouter();
+const goHome = () => {
+  //编程式导航跳转到首页
+  $router.push({ path: "/home" });
+};
+//点击登录与注册按钮的时候弹出对话框
+const login = () => {
+  userStore.visiable = true;
+};
+//退出登录按钮的回调
+const logout = () => {
+  //通知pinia仓库清除用户相关的信息
+  userStore.logout();
+  //编程式导航路由跳转到首页
+  $router.push({ path: "/home" });
+};
+
+//点击顶部下拉菜单进行路由跳转
+const goUser = (path: string) => {
+  $router.push({ path: path });
+};
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
 .top {
-
-  border-bottom: 1px solid var(--border-color);
-  height: var(--header-height);
-  padding: 0 12px 0 24px;
-  background-image: radial-gradient(transparent 1px,var(--bg-color) 1px);
-  background-size: 4px 4px;
-  backdrop-filter: saturate(50%) blur(4px);
-  -webkit-backdrop-filter: saturate(50%) blur(4px);
-  top: 0;
-
-  z-index: 9999;
-  position: fixed; // 固定在顶部
-  // top: 0;
-  left: 0;
+  position: fixed;
+  z-index: 999;
   width: 100%;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); // 应用底部阴影效果
-  width: 100%;
-  // height: 70px;
+  height: 70px;
+
   display: flex;
   justify-content: center;
-
   .content {
-    width: 1200px; // 内容宽度
-    height: 70px; // 内容高度
+    width: 1200px;
+    height: 70px;
+    background: white;
     display: flex;
     justify-content: space-between;
-
     .left {
       display: flex;
+      justify-content: center;
       align-items: center;
-      font-size: 20px;
-      color: #557bb8; // 字体颜色为蓝色
-
       img {
-        height: 55px; // 图片高度
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+      }
+      p {
+        font-size: 20px;
+        color: #55a6fe;
       }
     }
-
     .right {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 15px;
-      color: #666666; // 字体颜色为灰色
-
+      font-size: 14px;
+      color: #bbb;
       .help {
-        margin-right: 20px; // 右边距
+        margin-right: 10px;
       }
-    }
-
-    span:hover {
-      color: #5a92eb; // 鼠标悬停时的字体颜色为蓝色
     }
   }
 }
